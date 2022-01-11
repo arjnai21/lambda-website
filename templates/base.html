@@ -1,0 +1,11 @@
+<head><link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/base.css') }}"></head>
+
+<div class='topnav'>
+    <a href='/'> Home </a>
+    <a href='users'> User List</a>
+    <a href='classes'> Class List </a>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <input type = "file" name="file" onchange="form.submit()">
+    </form>
+</div>
+        

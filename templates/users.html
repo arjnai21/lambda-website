@@ -1,0 +1,15 @@
+{% include 'base.html' %}
+
+User List
+
+{% for user in users %}
+    Name: {{ user['name']}} </br>
+    Email: {{ user['email']}} </br>
+    {% for semester in user['semesters'] %}
+        Year: {{ semester['year']}} </br>
+        {% for class in semester['classes'] %}
+            Class: {{ class }} </br>
+        {% endfor %}
+    {% endfor %}
+</br></br>
+{% endfor %}
