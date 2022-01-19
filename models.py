@@ -1,7 +1,8 @@
 class User:
-    def __init__(self, name, semesters, major=None, minor=None, email=None, phoneNumber=None, year=None):
+    def __init__(self, name, semesters, major=None, doubleMajor=None, minor=None, email=None, phoneNumber=None, year=None):
         self.name = name
         self.major = major
+        self.doubleMajor = doubleMajor
         self.minor = minor
         self.email = email
         self.phoneNumber = phoneNumber

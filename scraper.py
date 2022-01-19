@@ -57,7 +57,7 @@ def extractClasses(curText):
 
     # Class Name is a series of strings (letters, dashes, ampersand) separated
     # by 1 space. Regex weirdness is to avoid spaces at end of match
-    classNameRegex = "(?P<className>(([\da-zA-Z&\-,]+ )*[\da-zA-Z&\-,]+)|(\*Repeated Course\*))"
+    classNameRegex = "(?P<className>(([\da-zA-Z&\-,;/]+ )*[\da-zA-Z&\-,;/]+)|(\*Repeated Course\*))"
     
     # Grade List is just list of grades (letter followed by potential - or +)
     # Update if I forgot certain grades
@@ -136,11 +136,12 @@ def extractMain(filepath):
         semester = Semester(year, classIds)
         semesters.append(semester)
 
-    userInfo = to_dict(User(name, semesters, major=major,email=email))
+    userInfo = to_dict(User(name, semesters, major=major, minor=minor, doubleMajor=doubleMajor, email=email))
 
     # Extract classes for use in Class class
     # Make new Class for each sem the class was taken
     userClasses = []
+
     for year, classes in finalClasses.items():
         for c in classes:
             curYear = ClassSemester(year, [name])
@@ -149,17 +150,16 @@ def extractMain(filepath):
             # First check if class is a retake
             for userClass in userClasses:
                 # If retake, add new ClassSemester to that Class
-                if c['classID'] == userClass['classID']:
+                if c['classID'] == userClass.id:
                     repeatClass = True
                     userClass.semesters.append(curYear)
 
             # If not a repeat, make a new Class
             if repeatClass == False:
                 cls = Class(c['classID'],c['className'], [curYear])
-                classes.append(cls)
+                userClasses.append(cls)
 
-    classInfo = userClasses
-    print(to_dict(classInfo))
+    classInfo = to_dict(userClasses)
 
     return userInfo, classInfo
 

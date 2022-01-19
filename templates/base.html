@@ -1,11 +1,22 @@
-<head><link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/base.css') }}"></head>
 
-<div class='topnav'>
-    <a href='/'> Home </a>
-    <a href='users'> User List</a>
-    <a href='classes'> Class List </a>
-    <form method="POST" action="/upload" enctype="multipart/form-data">
-        <input type = "file" name="file" onchange="form.submit()">
-    </form>
-</div>
-        
+<!DOCTYPE html>
+<head>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/base.css') }}">
+    <link rel="shortcut icon" type="image/png" href="static/img/favIcon.png"/>
+
+    <script src="static/js/jquery-3.6.0.min.js"></script>
+    {% block head %} {% endblock %}
+</head>
+
+<body>
+    <div class='topnav'>
+        <a href='/'> Home </a>
+        <a href='/users'> User List</a>
+        <a href='/classes'> Class List </a>
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <input type = "file" name="file" onchange="form.submit()">
+        </form>
+        <input type="text" placeholder="Search..">
+    </div>
+    {% block body %} {% endblock %}
+</body>

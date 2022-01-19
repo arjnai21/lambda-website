@@ -1,0 +1,13 @@
+{% include 'base.html' %}
+
+{% block body %}
+
+{{ cls['id'] }}  - {{ cls['name'] }} </br>
+{% for semester in cls['semesters'] %}
+    {{ semester['year'] }}</br>
+    {% for name in semester['usernames'] %}
+        <a href='/profile/{{name}}'>{{ name }}</a></br>
+    {% endfor %}
+{% endfor %}
+
+{% endblock %}

@@ -1,7 +1,18 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 
-User List
+{% block head %}
+    <script src="static/js/users.js"></script>
+{% endblock %}
 
+{% block body %}
+
+<input type="text" oninput="loadUsers()" id="search" placeholder="Filter...">
+
+<div id = "userDisplay">
+    <!-- Contents displayed in JavaScript -->
+</div>
+
+<!--
 {% for user in users %}
     Name: {{ user['name']}} </br>
     Email: {{ user['email']}} </br>
@@ -13,3 +24,5 @@ User List
     {% endfor %}
 </br></br>
 {% endfor %}
+-->
+{% endblock %}

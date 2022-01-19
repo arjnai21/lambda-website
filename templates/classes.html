@@ -1,3 +1,27 @@
 {% include 'base.html' %}
 
-Class List
+{% block head %}
+    <script src="static/js/classes.js"></script>
+{% endblock %}
+
+{% block body %}
+
+<input type="text" oninput="loadClasses()" id="search" placeholder="Filter...">
+
+<div id="classesDisplay">
+    <!-- Contents displayed in JavaScript -->
+</div>
+
+<!--
+{% for cls in classes %}
+    {{ cls['id'] }}  - {{ cls['name'] }} </br>
+    {% for semester in cls['semesters'] %}
+        {{ semester['year'] }}</br>
+        {% for name in semester['usernames'] %}
+           {{ name }}</br>
+        {% endfor %}
+    {% endfor %}
+    </br>
+{% endfor %}
+-->
+{% endblock %}
