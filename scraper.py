@@ -1,6 +1,6 @@
 from pdfminer.high_level import extract_text
 import re
-from models import User, Semester, Class, ClassSemester
+from models import User, Semester, Class, ClassSemester, ClassBasics, Major, MajorUser
 from util import to_dict
 
 # Extract email/major/double major/minors
@@ -125,15 +125,29 @@ def extractMain(filepath):
 
     name = basics[0]
     email = basics[1]
-    major = basics[2]
-    doubleMajor = basics[3]
-    minor = basics[4]
+    major = basics[2].strip().upper()
+    doubleMajor = basics[3].strip().upper()
+    minor = basics[4].strip().upper()
+
+    # Put major/doubleMajor/minor in proper use for Mongo
+    majorInfo = []
+    if major != "NONE":
+        majorUser = MajorUser(name,'major')
+        majorInfo.append(Major(major, [majorUser]))
+    if minor != "NONE":
+        majorUser = MajorUser(name,'minor')
+        majorInfo.append(Major(minor, [majorUser]))
+    if doubleMajor != "NONE":
+        majorUser = MajorUser(name,'doubleMajor')
+        majorInfo.append(Major(doubleMajor, [majorUser]))
+
+    majorInfo = to_dict(majorInfo)
 
     # Extract semesters for use in User class
     semesters = []
     for year, classes in finalClasses.items():
-        classIds = [c['classID'] for c in classes]
-        semester = Semester(year, classIds)
+        classObjs = [ClassBasics(c['classID'], c['className']) for c in classes]
+        semester = Semester(year, classObjs)
         semesters.append(semester)
 
     userInfo = to_dict(User(name, semesters, major=major, minor=minor, doubleMajor=doubleMajor, email=email))
@@ -161,7 +175,7 @@ def extractMain(filepath):
 
     classInfo = to_dict(userClasses)
 
-    return userInfo, classInfo
+    return userInfo, classInfo, majorInfo
 
 
 

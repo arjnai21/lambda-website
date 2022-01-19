@@ -4,13 +4,13 @@
 
 Name: {{ user['name']}} </br>
 Email: {{ user['email']}} </br>
-Major: {{ user['major']}} </br>
-Double Major: {{ user['doubleMajor'] }}
-Minor: {{ user['minor']}} </br>
+Major: <a href="/majorPage/{{ user['major'] }}"> {{ user['major'] }} </a>  </br>
+Double Major: <a href="/majorPage/{{ user['doubleMajor'] }}"> {{ user['doubleMajor'] }} </a> </br>
+Minor: <a href="/majorPage/{{ user['minor'] }}"> {{ user['minor'] }} </a> </br>
 {% for semester in user['semesters'] %}
     <b>{{ semester['year']}}</b></br>
     {% for class in semester['classes'] %}
-        <a href='/classPage/{{ class }}'> {{ class }} </a> </br>
+        <a href='/classPage/{{ class["classId"] }}'> {{ class['classId'] }} - {{ class['className'] }} </a> </br>
     {% endfor %}
 {% endfor %}
 

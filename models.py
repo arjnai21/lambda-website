@@ -15,6 +15,12 @@ class Semester:
         self.year = year
         self.classes = classes
 
+# Just stores id and name of each class
+class ClassBasics:
+    def __init__(self, classId, className):
+        self.classId = classId
+        self.className = className
+
 # Semesters with only year and users of that year
 class ClassSemester:
     def __init__(self, year, usernames):
@@ -28,9 +34,18 @@ class Class:
         self.name = name
         self.semesters = semesters
 
-# todo maybe: create ToUser (converting dict to user?)
+# Major: contains name of major and list of people in that major
+class Major:
+    def __init__(self, name, users):
+        self.name = name
+        self.users = users
 
-testSemester = Semester("Fall 2020",["C1","C2"])
-testUser = User("Name1",[testSemester],["Major1"])
+# Stores username and type of major
+class MajorUser:
+    def __init__(self, name, type):
+        self.name = name
+        self.type = type
+        
+# todo maybe: create ToUser (converting dict to user?)
 
 

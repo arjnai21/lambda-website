@@ -1,0 +1,15 @@
+{% include 'base.html' %}
+
+{% block head %}
+    <script src="static/js/majors.js"></script>
+{% endblock %}
+
+{% block body %}
+
+<input type="text" oninput="loadMajors()" id="search" placeholder="Filter...">
+
+<div id="majorsDisplay">
+    <!-- Contents displayed in JavaScript -->
+</div>
+
+{% endblock %}

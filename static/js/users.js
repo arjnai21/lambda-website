@@ -37,9 +37,9 @@ function displayUsers(users) {
         if (year) {$(id).append("Year: " + year + "</br>")}
         $(id).append(email + "</br>");
         if (phoneNumber) {$(id).append("Phone Number: " + phoneNumber + "</br>")}
-        if (major) {$(id).append("Major: " + major + "</br>")}
-        if (doubleMajor) {$(id).append("Double Major: " + doubleMajor + "</br>")}
-        if (minor) {$(id).append("Minor: " + minor + "</br>") }
+        if (major != 'NONE') {$(id).append("Major: <a href='majorPage/" + major + "'>"+ major + "</a></br>")}
+        if (doubleMajor != 'NONE') {$(id).append("Double Major: <a href='majorPage/" + doubleMajor + "'>"+ doubleMajor + "</a></br>")}
+        if (minor != 'NONE') {$(id).append("Minor: <a href='majorPage/" + minor + "'>" + minor + "</a></br>")}
 
         /* Remove for now
         for(var j = 0; j < user['semesters'].length; j++) {
