@@ -77,7 +77,7 @@ def extractClasses(curText):
 def extractMain(filepath):
 
     # Use pdfminer to extract raw text from pdf
-    text = extract_text('pdf/' + filepath)
+    text = extract_text(filepath)
 
     basics = extractBasics(text)
     
