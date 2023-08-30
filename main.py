@@ -37,13 +37,13 @@ def changePage(type):
 
 app = st.sidebar.selectbox('Go To', app.apps, format_func=lambda app: app['title'], on_change=changePage, args=['main'])
 
-userList = sorted([u['name'] for u in usersDB])
-classList = sorted([c['id'] for c in classDB])
-majorList = sorted([m['name'] for m in majorsDB])
+userList = sorted(usersDB, key=lambda x: x['name'])
+classList = sorted(classDB, key=lambda x: x['id'])
+majorList = sorted(majorsDB, key=lambda x: x['name'])
 
-userInput = st.sidebar.selectbox('View User Profile', userList, on_change=changePage, args=['userProfile'])
-classInput = st.sidebar.selectbox('View Class Info', classList, on_change=changePage, args=['classPage'])
-majorInput = st.sidebar.selectbox('View Major Info', majorList, on_change=changePage, args=['majorPage'])
+userInput = st.sidebar.selectbox('View User Profile', userList, format_func=lambda x: x['name'], on_change=changePage, args=['userProfile'])
+classInput = st.sidebar.selectbox('View Class Info', classList, format_func=lambda x: x['id'], on_change=changePage, args=['classPage'])
+majorInput = st.sidebar.selectbox('View Major Info', majorList, format_func=lambda x: x['name'], on_change=changePage, args=['majorPage'])
 
 if st.session_state['app_view'] == 'main':
     app['function'](db)
@@ -53,3 +53,4 @@ elif st.session_state['app_view'] == 'classPage':
     classPage.app(classInput)
 elif st.session_state['app_view'] == 'majorPage':
     majorPage.app(majorInput)
+
