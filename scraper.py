@@ -26,7 +26,7 @@ def extractBasics(text):
     name = matcher.search(text[dateIndex:emailIndex]).group()
 
     # Establish regex for major
-    majorPattern = "Major:\s+(?P<major>[\w: ]+)\n"
+    majorPattern = "Major:\s+(?P<major>[\w: | & ]+)\n"
     matcher = re.compile(majorPattern)
     major = matcher.search(text).group('major')
 
