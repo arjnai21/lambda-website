@@ -2,6 +2,7 @@
 import streamlit as st
 import os
 from scraper import extractMain
+os.mkdir("transcripts")
 
 def app(db):
 

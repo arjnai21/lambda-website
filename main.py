@@ -14,7 +14,7 @@ if 'app_view' not in st.session_state:
 
 @st.experimental_singleton
 def init_connection():
-    return pymongo.MongoClient(**st.secrets["mongo"])
+    return pymongo.MongoClient(st.secrets["mongo"].host)
 
 client = init_connection()
 db = client.get_database('lambda')
