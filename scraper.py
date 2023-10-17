@@ -6,7 +6,7 @@ from util import to_dict
 # Extract email/major/double major/minors
 def extractBasics(text):
     # Establish regex for email
-    emailPattern = "[\w\.]+@\w+\.\w+"
+    emailPattern = "[\w\.]+@\w+\..*"
     matcher = re.compile(emailPattern)
 
     # later: check for edge cases/error proof
