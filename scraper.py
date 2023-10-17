@@ -26,13 +26,13 @@ def extractBasics(text):
     name = matcher.search(text[dateIndex:emailIndex]).group()
 
     # Establish regex for major
-    majorPattern = "Major:\s+(?P<major>[\w: | & | .]+)\n"
+    majorPattern = "Major:\s+(?P<major>[\w: | & | -.]+)\n"
     matcher = re.compile(majorPattern)
     major = matcher.search(text).group('major')
 
     # Establish regex for double major
     doubleMajor = "None"
-    doubleMajorPattern = "Double Major:\s+(?P<doubleMajor>[\w | .]+)\n"
+    doubleMajorPattern = "Double Major:\s+(?P<doubleMajor>[\w: | & | -.]+)\n"
     matcher = re.compile(doubleMajorPattern)
 
     match = matcher.search(text)
@@ -41,7 +41,7 @@ def extractBasics(text):
 
     # Establish regex for minor
     minor = "None"
-    minorPattern = "Minor:\s+(?P<minor>[\w | *]+)\n"
+    minorPattern = "Minor:\s+(?P<minor>[\w: | & | -.]+)\n"
     matcher = re.compile(minorPattern)
 
     match = matcher.search(text)
